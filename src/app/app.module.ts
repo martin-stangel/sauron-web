@@ -13,6 +13,7 @@ import {AddDialogComponent} from './dialogs/add/add.dialog.component';
 import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {LoginComponent} from './pages/login/login.component';
+import {DataExportComponent} from './pages/data-export/data-export.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -27,7 +28,8 @@ import {AuthenticationService} from './services/authentication.service';
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
-    LoginComponent
+    LoginComponent,
+    DataExportComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import {AuthenticationService} from './services/authentication.service';
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
-    LoginComponent
+    LoginComponent,
+    DataExportComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
