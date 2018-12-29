@@ -15,7 +15,6 @@ import {map} from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
   displayedColumns = ['id', 'title', 'state', 'url', 'created_at', 'updated_at', 'actions'];
   exampleDatabase: DataService | null;
@@ -96,7 +95,7 @@ export class AppComponent implements OnInit {
   private refreshTable() {
     // Refreshing table using paginator
     // Thanks yeager-j for tips
-    // https://github.com/marinantonio/angular-mat-table-crud/issues/12
+    // https://github.com/marinantonio/angular-sauron-web/issues/12
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
