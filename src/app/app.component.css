@@ -1,0 +1,22 @@
+.app-sidenav-container {
+  height: 100%;
+}
+
+.app-sidenav {
+  outline-width: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.app-spacer {
+  flex: 1;
+}
+
+.app-sidenav-content {
+  padding: 20px 50px 50px 20px;
+}

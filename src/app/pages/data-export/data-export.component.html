@@ -1,88 +1,90 @@
-<mat-toolbar color="primary">
-  <span>Angular MatTable CRUD Example</span>
-  <span class="spacer"></span>
-  Reload data:
-  <button mat-icon-button (click)="refresh()">
-    <mat-icon>refresh</mat-icon>
-  </button>
-</mat-toolbar>
+<mat-card class='app-data-export-card'>
+  <mat-card-title>Data Export Templates</mat-card-title>
+  <mat-card-subtitle>
+    <button mat-button color="primary" (click)="newTemplate()">
+      <mat-icon aria-label="playlist_add">playlist_add</mat-icon>
+      Add new template
+    </button>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <mat-nav-list>
+        <mat-list-item *ngFor="let template of templates">
+            <span class="data-export-template-name">{{template.name}}</span>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="edit(template)">
+                    <mat-icon aria-label="edit">edit</mat-icon>
+                    Edit
+                  </button>
+                  <button mat-button color="primary" (click)="execute(template)">
+                    <mat-icon aria-label="send">send</mat-icon>
+                    Execute
+                  </button>
 
-<div class="container mat-elevation-z8">
+                  <button mat-button color="warn" (click)="delete(template)">
+                    <mat-icon aria-label="Delete">delete</mat-icon>
+                    Delete
+                  </button>
+            </mat-action-row>
+            </mat-list-item>
+          <!--
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-  <div class="form">
-    <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter issues">
-    </mat-form-field>
-  </div>
+        <mat-form-field class="app-form-element">
+          <input matInput placeholder="Template name" disabled="true" value="1st template">
+        </mat-form-field>
 
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <div class="form-element">
+          <mat-checkbox formControlName="validate" value="1" disabled="true">
+            Delete Source
+          </mat-checkbox>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-card-subtitle>
+          <button mat-button color="primary" (click)="newTemplate()">
+            <mat-icon aria-label="playlist_add">playlist_add</mat-icon>
+            Add new path
+          </button>
+        </mat-card-subtitle>
+        <mat-card-content>
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Paths
+                </mat-panel-title>
+              </mat-expansion-panel-header>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+              <mat-form-field class="app-form-element">
+                <input matInput placeholder="Template name">
+              </mat-form-field>
 
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
-    </ng-container>
+              <div class="form-element">
+                <mat-checkbox formControlName="validate" value="1">
+                  Delete Source
+                </mat-checkbox>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </mat-card-content>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="save()">
+            <mat-icon aria-label="edit">edit</mat-icon>
+            Edit
+          </button>
+          <button mat-button color="primary" (click)="execute()">
+            <mat-icon aria-label="send">send</mat-icon>
+            Execute
+          </button>
 
-    <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.title}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="state">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.state}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="url">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Url</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.url}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="created_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Created at</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.created_at}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="updated_at">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Updated at</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.updated_at}}</mat-cell>
-    </ng-container>
-
-    <!-- actions -->
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
-          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
-        </button>
-      </mat-header-cell>
-
-      <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.title, row.state, row.url, row.created_at, row.updated_at)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.title, row.state, row.url)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-
-  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-    No results
-  </div>
-
-  <mat-paginator #paginator
-                 [length]="dataSource.filteredData.length"
-                 [pageIndex]="0"
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
-  </mat-paginator>
-</div>
+          <button mat-button color="warn" (click)="delete()">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+            Delete
+          </button>
+        </mat-action-row>
+        -->
+      </mat-nav-list>
+  </mat-card-content>
+</mat-card>

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('mat-table-crud App', () => {
+describe('sauron-web App', () => {
   let page: AppPage;
 
   beforeEach(() => {

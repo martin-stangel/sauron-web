@@ -55,12 +55,3 @@
 .mat-header-cell:nth-child(7){
   flex: 0 0 7%;
 }
-
-.app-form-element {
-  padding: 5px 0px 25px 2px;
-  width: 100%;
-}
-
-.data-export-template-name {
-  flex: 1;
-}

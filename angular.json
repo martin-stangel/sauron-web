@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mat-table-crud": {
+    "sauron-web": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -48,18 +48,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mat-table-crud:build"
+            "browserTarget": "sauron-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mat-table-crud:build:production"
+              "browserTarget": "sauron-web:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mat-table-crud:build"
+            "browserTarget": "sauron-web:build"
           }
         },
         "test": {
@@ -93,7 +93,7 @@
         }
       }
     },
-    "mat-table-crud-e2e": {
+    "sauron-web-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -102,7 +102,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "mat-table-crud:serve"
+            "devServerTarget": "sauron-web:serve"
           }
         },
         "lint": {
@@ -119,7 +119,7 @@
       }
     }
   },
-  "defaultProject": "mat-table-crud",
+  "defaultProject": "sauron-web",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
