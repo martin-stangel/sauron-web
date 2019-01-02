@@ -30,6 +30,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {DataExportComponent} from './pages/data-export/data-export.component';
 import {DataExportTemplateComponent} from './pages/data-export/template/data-export-template.component';
 import {DataExportPathComponent} from './pages/data-export/path/data-export-path.component';
+import {DataExportEditComponent} from './pages/data-export/edit/data-export-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavigationComponent} from './pages/navigation/navigation.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -49,6 +50,7 @@ import {AuthenticationService} from './services/authentication.service';
     DataExportComponent,
     DataExportTemplateComponent,
     DataExportPathComponent,
+    DataExportEditComponent,
     NavigationComponent
   ],
   imports: [
@@ -82,6 +84,7 @@ import {AuthenticationService} from './services/authentication.service';
     DataExportComponent,
     DataExportTemplateComponent,
     DataExportPathComponent,
+    DataExportEditComponent,
     NavigationComponent
   ],
   providers: [

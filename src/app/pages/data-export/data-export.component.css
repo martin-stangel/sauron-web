@@ -61,6 +61,10 @@
   width: 100%;
 }
 
+.data-export-card {
+  padding: 5px;
+}
+
 .data-export-template-name {
   flex: 1;
 }

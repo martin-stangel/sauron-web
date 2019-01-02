@@ -4,7 +4,7 @@
   indent="10">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
       <button mat-icon-button disabled></button>
-      <a mat-button class="app-navigation-link" routerLink="{{node.targetUrl}}">{{node.name}}</a>
+      <a class="app-navigation-link" routerLink="{{node.routerLink}}">{{node.name}}</a>
     </mat-tree-node>
 
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>

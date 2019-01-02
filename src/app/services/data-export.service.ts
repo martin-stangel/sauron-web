@@ -27,15 +27,21 @@ export class DataExportService {
         name: 'Template1',
         paths: [
           {
-            id: 0,
-            source_path: '/source1',
+            sourcePath: '/source1',
             recursive: true,
             wildcards: [
               '*'
             ]
+          },
+          {
+            sourcePath: '/source2',
+            recursive: false,
+            wildcards: [
+              '*.avi *.mov'
+            ]
           }
         ],
-        delete_source: true
+        deleteSource: true
       },
       1: {
         id: 1,
@@ -43,7 +49,7 @@ export class DataExportService {
         paths: [
           {
             id: 0,
-            source_path: '/source2',
+            sourcePath: '/source2',
             recursive: false,
             wildcards: [
               '*.avi',
@@ -51,7 +57,7 @@ export class DataExportService {
             ]
           }
         ],
-        delete_source: false
+        deleteSource: false
       }
     };
 

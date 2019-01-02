@@ -10,13 +10,13 @@ import { BehaviorSubject, Observable, of as observableOf } from 'rxjs';
 export class FileNode {
   children: FileNode[];
   name: string;
-  targetUrl: string;
+  routerLink: string;
 }
 
 /** Flat node with expandable and level information */
 export class FileFlatNode {
   constructor(
-    public expandable: boolean, public name: string, public level: number, public targetUrl: string) { }
+    public expandable: boolean, public name: string, public level: number, public routerLink: string) { }
 }
 
 /**
@@ -73,7 +73,7 @@ export class FileDatabase {
         if (typeof value === 'object') {
           node.children = this.buildFileTree(value, level + 1);
         } else {
-          node.targetUrl = value;
+          node.routerLink = value;
         }
       }
 
@@ -113,7 +113,7 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   }
 
   transformer = (node: FileNode, level: number) => {
-    return new FileFlatNode(!!node.children, node.name, level, node.targetUrl);
+    return new FileFlatNode(!!node.children, node.name, level, node.routerLink);
   }
 
   private _getLevel = (node: FileFlatNode) => node.level;

@@ -1,13 +1,12 @@
 export class DataExportPath {
-  id: number;
   recursive: boolean;
-  source_path: string;
+  sourcePath: string;
   wildcards: string[];
 }
 
 export class DataExportTemplate {
   id: number;
   name: string;
-  delete_source: boolean;
+  deleteSource: boolean;
   paths: DataExportPath[];
 }

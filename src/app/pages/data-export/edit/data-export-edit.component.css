@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  width: auto;
+}
+
+.container > * {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  padding-top: 6px;
+}
+
+.mat-form-field {
+  flex-grow: 1;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
