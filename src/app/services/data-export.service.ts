@@ -39,6 +39,13 @@ export class DataExportService {
             wildcards: [
               '*.avi *.mov'
             ]
+          },
+          {
+            sourcePath: '/source3',
+            recursive: false,
+            wildcards: [
+              '*.avi *.mov'
+            ]
           }
         ],
         deleteSource: true

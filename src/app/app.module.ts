@@ -20,6 +20,7 @@ import {
   MatCheckboxModule,
   MatSlideToggleModule,
   MatTreeModule,
+  MatSelectModule,
 } from '@angular/material';
 import { routing } from './app.routing';
 import {DataService} from './services/data.service';
@@ -74,6 +75,7 @@ import {AuthenticationService} from './services/authentication.service';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatTreeModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
   entryComponents: [

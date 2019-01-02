@@ -2,7 +2,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject } from '@angular/core';
 import { DataExportService } from '../../../services/data-export.service';
 import { FormControl, Validators } from '@angular/forms';
-import { DataExportTemplate } from '../../../models/data-export-template';
+import { DataExportTemplate, DataExportPath } from '../../../models/data-export-template';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-data-export-edit',
@@ -10,8 +11,6 @@ import { DataExportTemplate } from '../../../models/data-export-template';
   styleUrls: ['./data-export-edit.component.css']
 })
 export class DataExportEditComponent {
-  displayedColumns = ['sourcePath', 'wildcards', 'recursive'];
-
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public template: DataExportTemplate,
@@ -33,6 +32,16 @@ export class DataExportEditComponent {
   }
 
   newPath() {
+  }
+
+  deletePath(path: DataExportPath) {
+    const template = new DataExportTemplate();
+    Object.assign(template, this.template);
+    const paths = template.paths;
+    const index = paths.indexOf(path);
+    delete paths[index];
+    this.template = template;
+    location.reload();
   }
 
   submit() {
