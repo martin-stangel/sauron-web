@@ -15,10 +15,12 @@
     </mat-select>
   </mat-form-field>
   <h2 class="mat-h2">Paths</h2>
-  <button mat-button color="primary" (click)="newPath()">
-      <mat-icon aria-label="add">add</mat-icon>
-      Add new path
-  </button>
+  <mat-toolbar align="end">
+      <button mat-button color="primary" (click)="newPath()" style="margin-left: auto">
+          <mat-icon aria-label="add">add</mat-icon>
+          Add new path
+      </button>
+  </mat-toolbar>
   <mat-card class="app-path-card" *ngFor="let path of paths;let index = index;trackBy:trackByIndex;">
     <mat-card-content>
         <mat-form-field class="app-form-element">
@@ -28,17 +30,17 @@
             <input matInput placeholder="Wild cards" [(ngModel)]="paths[index].wildcards" />
         </mat-form-field>
         <mat-form-field class="app-form-element">
-            <mat-select [(ngModel)]="paths[index].recursive">
-              <mat-option value="true">
-                Recursive
-              </mat-option>
-              <mat-option value="false">
-                Not Recursive
-              </mat-option>
-          </mat-select>
+          <mat-select placeholder='File lookup' [(ngModel)]="paths[index].recursive">
+            <mat-option [value]="true">
+              Recursive
+            </mat-option>
+            <mat-option [value]="false">
+              Not Recursive
+            </mat-option>
+        </mat-select>
         </mat-form-field>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions align="end">
         <button mat-button color="warn" (click)="deletePath(path)">
             <mat-icon aria-label="Delete">delete</mat-icon>
             Delete
@@ -47,7 +49,7 @@
   </mat-card>
 
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions align="end">
     <button
     mat-button
     [type]="submit"

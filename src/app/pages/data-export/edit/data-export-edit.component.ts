@@ -40,7 +40,7 @@ export class DataExportEditComponent {
   }
 
   newPath() {
-    this.paths.push({
+    this.paths.unshift({
       sourcePath: '',
       wildcards: ['*'],
       recursive: true,

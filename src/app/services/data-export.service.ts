@@ -69,7 +69,7 @@ export class DataExportService {
 
     put(template: DataExportTemplate): Promise<DataExportTemplate[]> {
       // TODO: send HTTP put here instead
-      this.templates.push(template);
+      this.templates.unshift(template);
       return this.getAll();
     }
 
