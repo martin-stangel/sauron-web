@@ -6,27 +6,28 @@
         Add new template
       </button>
   </mat-toolbar>
-  <mat-list>
-    <mat-divider></mat-divider>
-    <div cdkDrag *ngFor="let template of templates;let index=index; trackBy: trackByIndex">
-      <mat-list-item disableRipple="true">
-        <div class="data-export-template-name">{{ template.name }}</div>
-        <mat-action-row>
-          <button mat-button color="primary" (click)="edit(index)">
-            <mat-icon aria-label="edit">edit</mat-icon>
-            Edit
-          </button>
-          <button mat-button color="accent" (click)="execute(template)">
-            <mat-icon aria-label="send">send</mat-icon>
-            Execute
-          </button>
 
-          <button mat-button color="warn" (click)="dataExportService.delete(index)">
-            <mat-icon aria-label="Delete">delete</mat-icon>
-            Delete
-          </button>
-        </mat-action-row>
-      </mat-list-item>
-    </div>
+  <mat-list>
+    <mat-list-item *ngIf="templates.length == 0">
+        <mat-hint>No templates defined</mat-hint>
+    </mat-list-item>
+    <mat-list-item *ngFor="let template of templates;let index=index; trackBy: trackByIndex">
+      <div class="data-export-template-name">{{ template.name }}</div>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="edit(index)">
+          <mat-icon aria-label="edit">edit</mat-icon>
+          Edit
+        </button>
+        <button mat-button color="accent" (click)="execute(template)">
+          <mat-icon aria-label="send">send</mat-icon>
+          Execute
+        </button>
+
+        <button mat-button color="warn" (click)="dataExportService.delete(index)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+          Delete
+        </button>
+      </mat-action-row>
+    </mat-list-item>
   </mat-list>
 </div>

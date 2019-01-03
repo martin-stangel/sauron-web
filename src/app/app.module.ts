@@ -21,6 +21,7 @@ import {
   MatSlideToggleModule,
   MatTreeModule,
   MatSelectModule,
+  MatChipsModule,
 } from '@angular/material';
 import { routing } from './app.routing';
 import {DataService} from './services/data.service';
@@ -70,6 +71,7 @@ import {AuthenticationService} from './services/authentication.service';
     MatSlideToggleModule,
     MatTreeModule,
     MatSelectModule,
+    MatChipsModule,
     ReactiveFormsModule
   ],
   entryComponents: [
