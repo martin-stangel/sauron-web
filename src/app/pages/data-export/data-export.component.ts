@@ -4,6 +4,7 @@ import {DataExportService} from '../../services/data-export.service';
 import { DataExportTemplate } from '../../models/data-export-template';
 import { DataExportEditComponent } from './edit/data-export-edit.component';
 import { BehaviorSubject } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-export',
@@ -33,7 +34,10 @@ export class DataExportComponent implements OnInit {
         height: 'auto'
       });
 
-    return dialogRef.afterClosed();
+    return dialogRef.afterClosed().pipe(
+      filter(result => result === 1),
+      map(result => template)
+    );
   }
 
   newTemplate(): void {
@@ -43,17 +47,14 @@ export class DataExportComponent implements OnInit {
       paths: []
     };
     this.openEditDialog(newTemplate).subscribe(result => {
-      if (result === 1) {
-        this.dataExportService.put(newTemplate);
-      }
+        this.dataExportService.post(result);
     });
   }
 
-  edit(template: DataExportTemplate) {
-    this.openEditDialog(template).subscribe(result => {
-      if (result === 1) {
-        this.dataExportService.post(template);
-      }
+  edit(templateIndex: number) {
+    const editedTemplate = JSON.parse(JSON.stringify(this.templates[templateIndex]));
+    this.openEditDialog(editedTemplate).subscribe(result => {
+        this.dataExportService.put(templateIndex, result);
     });
   }
 

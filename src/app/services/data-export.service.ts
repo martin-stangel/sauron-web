@@ -64,12 +64,13 @@ export class DataExportService {
 
     post(template: DataExportTemplate): Promise<DataExportTemplate[]> {
       // TODO: send HTTP post here instead
+      this.templates.unshift(template);
       return this.getAll();
     }
 
-    put(template: DataExportTemplate): Promise<DataExportTemplate[]> {
+    put(templateIndex: number, template: DataExportTemplate): Promise<DataExportTemplate[]> {
       // TODO: send HTTP put here instead
-      this.templates.unshift(template);
+      this.templates[templateIndex] = template;
       return this.getAll();
     }
 

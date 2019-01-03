@@ -12,7 +12,6 @@ import { templateJitUrl } from '@angular/compiler';
 })
 export class DataExportEditComponent {
   paths: DataExportPath[];
-  formGroup: FormGroup;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
@@ -22,21 +21,8 @@ export class DataExportEditComponent {
     this.paths = template.paths;
   }
 
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
-
   trackByIndex(index: number, path: DataExportPath): any {
     return index;
-  }
-
-  getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-      ? 'Not a valid email'
-      : '';
   }
 
   newPath() {
@@ -50,17 +36,5 @@ export class DataExportEditComponent {
   deletePath(path: DataExportPath) {
     const index = this.paths.indexOf(path);
     this.paths.splice(index, 1);
-  }
-
-  submit() {
-    // emppty stuff
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  stopEdit(): void {
-    // this.dataExportService.update(this.template);
   }
 }

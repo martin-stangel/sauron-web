@@ -12,7 +12,7 @@
       <mat-list-item disableRipple="true">
         <div class="data-export-template-name">{{ template.name }}</div>
         <mat-action-row>
-          <button mat-button color="primary" (click)="edit(template)">
+          <button mat-button color="primary" (click)="edit(index)">
             <mat-icon aria-label="edit">edit</mat-icon>
             Edit
           </button>
@@ -28,64 +28,5 @@
         </mat-action-row>
       </mat-list-item>
     </div>
-    <!--
-        <mat-panel-description>
-          Type your name and age
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <mat-form-field class="app-form-element">
-        <input matInput placeholder="Template name" disabled="true" value="1st template">
-      </mat-form-field>
-
-      <div class="form-element">
-        <mat-checkbox formControlName="validate" value="1" disabled="true">
-          Delete Source
-        </mat-checkbox>
-      </div>
-      <mat-divider></mat-divider>
-      <mat-card-subtitle>
-        <button mat-button color="primary" (click)="newTemplate()">
-          <mat-icon aria-label="playlist_add">playlist_add</mat-icon>
-          Add new path
-        </button>
-      </mat-card-subtitle>
-      <mat-card-content>
-        <mat-accordion class="example-headers-align">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Paths
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-form-field class="app-form-element">
-              <input matInput placeholder="Template name">
-            </mat-form-field>
-
-            <div class="form-element">
-              <mat-checkbox formControlName="validate" value="1">
-                Delete Source
-              </mat-checkbox>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </mat-card-content>
-      <mat-action-row>
-        <button mat-button color="primary" (click)="save()">
-          <mat-icon aria-label="edit">edit</mat-icon>
-          Edit
-        </button>
-        <button mat-button color="primary" (click)="execute()">
-          <mat-icon aria-label="send">send</mat-icon>
-          Execute
-        </button>
-
-        <button mat-button color="warn" (click)="delete()">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-          Delete
-        </button>
-      </mat-action-row>
-      -->
   </mat-list>
 </div>
