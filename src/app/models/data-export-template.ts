@@ -5,7 +5,6 @@ export class DataExportPath {
 }
 
 export class DataExportTemplate {
-  id: number;
   name: string;
   deleteSource: boolean;
   paths: DataExportPath[];

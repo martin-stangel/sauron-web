@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material';
 import {DataExportService} from '../../services/data-export.service';
 import { DataExportTemplate } from '../../models/data-export-template';
 import { DataExportEditComponent } from './edit/data-export-edit.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-data-export',
@@ -14,32 +15,48 @@ export class DataExportComponent implements OnInit {
 
   constructor(
     public dataExportService: DataExportService,
-    public dialog: MatDialog) {}
+    public dialog: MatDialog) {
+      this.templates = dataExportService.templates;
+    }
 
   ngOnInit(): void {
-    this.dataExportService.getAll().subscribe( templates => {
-      this.templates = templates;
-    });
   }
 
-  newTemplate(): void {
+  trackByIndex(index: number, template: DataExportTemplate): any {
+    return index;
   }
 
-  edit(template: DataExportTemplate) {
+  openEditDialog(template: DataExportTemplate) {
     const dialogRef = this.dialog.open(DataExportEditComponent,
       {
         data: template,
         height: 'auto'
       });
 
-    dialogRef.afterClosed().subscribe(result => {
+    return dialogRef.afterClosed();
+  }
+
+  newTemplate(): void {
+    const newTemplate: DataExportTemplate = {
+      name: '',
+      deleteSource: false,
+      paths: []
+    };
+    this.openEditDialog(newTemplate).subscribe(result => {
       if (result === 1) {
-        // TODO: refresh data (maybe?)
+        this.dataExportService.put(newTemplate);
       }
     });
   }
-  execute(template: DataExportTemplate) {
+
+  edit(template: DataExportTemplate) {
+    this.openEditDialog(template).subscribe(result => {
+      if (result === 1) {
+        this.dataExportService.post(template);
+      }
+    });
   }
-  delete(template: DataExportTemplate) {
+
+  execute(template: DataExportTemplate) {
   }
 }

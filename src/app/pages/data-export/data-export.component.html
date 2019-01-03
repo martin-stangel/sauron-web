@@ -7,7 +7,7 @@
 </div>
 <mat-list>
   <mat-divider></mat-divider>
-  <div cdkDrag *ngFor="let template of templates">
+  <div cdkDrag *ngFor="let template of templates;let index=index; trackBy: trackByIndex">
     <mat-list-item disableRipple="true">
       <div class="data-export-template-name">{{ template.name }}</div>
       <mat-action-row>
@@ -15,12 +15,12 @@
           <mat-icon aria-label="edit">edit</mat-icon>
           Edit
         </button>
-        <button mat-button color="primary" (click)="execute(template)">
+        <button mat-button color="accent" (click)="execute(template)">
           <mat-icon aria-label="send">send</mat-icon>
           Execute
         </button>
 
-        <button mat-button color="warn" (click)="delete(template)">
+        <button mat-button color="warn" (click)="dataExportService.delete(index)">
           <mat-icon aria-label="Delete">delete</mat-icon>
           Delete
         </button>

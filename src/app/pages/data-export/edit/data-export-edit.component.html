@@ -1,15 +1,15 @@
 <h2 mat-dialog-title class="mat-h2">Template properties</h2>
 <mat-dialog-content class="mat-typography">
   <mat-form-field class="app-form-element">
-    <input matInput placeholder="Name" [value]="template.name" />
+    <input matInput placeholder="Name" [(ngModel)]="template.name" />
   </mat-form-field>
 
   <mat-form-field class="app-form-element">
-      <mat-select placeholder="After Export" [value]="template.deleteSource">
-        <mat-option [value]="true">
+      <mat-select placeholder="After Export" [(ngModel)]="template.deleteSource">
+        <mat-option value="true">
           Delete Source
         </mat-option>
-        <mat-option [value]="false">
+        <mat-option value="false">
           Don't Delete Source
         </mat-option>
     </mat-select>
@@ -19,20 +19,20 @@
       <mat-icon aria-label="add">add</mat-icon>
       Add new path
   </button>
-  <mat-card class="app-path-card" *ngFor="let path of template.paths">
+  <mat-card class="app-path-card" *ngFor="let path of paths;let index = index;trackBy:trackByIndex;">
     <mat-card-content>
         <mat-form-field class="app-form-element">
-            <input matInput placeholder="Source path" [value]="path.sourcePath" />
+            <input matInput placeholder="Source path" [(ngModel)]="paths[index].sourcePath" />
         </mat-form-field>
         <mat-form-field class="app-form-element">
-            <input matInput placeholder="Wild cards" [value]="path.wildcards" />
+            <input matInput placeholder="Wild cards" [(ngModel)]="paths[index].wildcards" />
         </mat-form-field>
         <mat-form-field class="app-form-element">
-            <mat-select [value]="path.recursive">
-              <mat-option [value]="true">
+            <mat-select [(ngModel)]="paths[index].recursive">
+              <mat-option value="true">
                 Recursive
               </mat-option>
-              <mat-option [value]="false">
+              <mat-option value="false">
                 Not Recursive
               </mat-option>
           </mat-select>

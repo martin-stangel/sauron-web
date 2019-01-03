@@ -24,9 +24,6 @@ import {
 } from '@angular/material';
 import { routing } from './app.routing';
 import {DataService} from './services/data.service';
-import {AddDialogComponent} from './dialogs/add/add.dialog.component';
-import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
-import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
 import {LoginComponent} from './pages/login/login.component';
 import {DataExportComponent} from './pages/data-export/data-export.component';
 import {DataExportTemplateComponent} from './pages/data-export/template/data-export-template.component';
@@ -44,9 +41,6 @@ import {AuthenticationService} from './services/authentication.service';
 @NgModule({
   declarations: [
     AppComponent,
-    AddDialogComponent,
-    EditDialogComponent,
-    DeleteDialogComponent,
     LoginComponent,
     DataExportComponent,
     DataExportTemplateComponent,
@@ -79,9 +73,6 @@ import {AuthenticationService} from './services/authentication.service';
     ReactiveFormsModule
   ],
   entryComponents: [
-    AddDialogComponent,
-    EditDialogComponent,
-    DeleteDialogComponent,
     LoginComponent,
     DataExportComponent,
     DataExportTemplateComponent,

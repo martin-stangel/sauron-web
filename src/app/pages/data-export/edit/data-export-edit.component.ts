@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { DataExportService } from '../../../services/data-export.service';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { DataExportTemplate, DataExportPath } from '../../../models/data-export-template';
 import { templateJitUrl } from '@angular/compiler';
 
@@ -11,17 +11,25 @@ import { templateJitUrl } from '@angular/compiler';
   styleUrls: ['./data-export-edit.component.css']
 })
 export class DataExportEditComponent {
+  paths: DataExportPath[];
+  formGroup: FormGroup;
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public template: DataExportTemplate,
-    public dialogRef: MatDialogRef<DataExportEditComponent>,
-    public dataExportService: DataExportService
-  ) {}
+    public dialogRef: MatDialogRef<DataExportEditComponent>
+  ) {
+    this.paths = template.paths;
+  }
 
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
   ]);
+
+  trackByIndex(index: number, path: DataExportPath): any {
+    return index;
+  }
 
   getErrorMessage() {
     return this.formControl.hasError('required')
@@ -32,16 +40,16 @@ export class DataExportEditComponent {
   }
 
   newPath() {
+    this.paths.push({
+      sourcePath: '',
+      wildcards: ['*'],
+      recursive: true,
+    });
   }
 
   deletePath(path: DataExportPath) {
-    const template = new DataExportTemplate();
-    Object.assign(template, this.template);
-    const paths = template.paths;
-    const index = paths.indexOf(path);
-    delete paths[index];
-    this.template = template;
-    location.reload();
+    const index = this.paths.indexOf(path);
+    this.paths.splice(index, 1);
   }
 
   submit() {
@@ -53,6 +61,6 @@ export class DataExportEditComponent {
   }
 
   stopEdit(): void {
-    this.dataExportService.update(this.template);
+    // this.dataExportService.update(this.template);
   }
 }
