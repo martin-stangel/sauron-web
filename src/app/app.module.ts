@@ -22,6 +22,7 @@ import {
   MatTreeModule,
   MatSelectModule,
   MatChipsModule,
+  MatTooltipModule,
 } from '@angular/material';
 import { routing } from './app.routing';
 import {DataService} from './services/data.service';
@@ -72,6 +73,7 @@ import {AuthenticationService} from './services/authentication.service';
     MatTreeModule,
     MatSelectModule,
     MatChipsModule,
+    MatTooltipModule,
     ReactiveFormsModule
   ],
   entryComponents: [

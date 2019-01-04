@@ -1,33 +1,118 @@
-<div fxFlex>
-  <h1>Data Export Templates</h1>
-  <mat-toolbar align="end">
-      <button mat-button color="primary" (click)="newTemplate()">
-        <mat-icon aria-label="add">add</mat-icon>
-        Add new template
+<div class="data-export-root">
+  <h1 mat-title>Data Export</h1>
+
+  <!-- Status Part -->
+  <mat-card>
+    <mat-card-title>Status</mat-card-title>
+    <mat-card-content>
+        <div mat-body-strong>No job running</div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-list role="list" class="data-export-list">
+    <!-- Templates Part -->
+    <h2 mat-subheader>
+      Templates <span class="data-export-spacer"></span>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="newTemplate()"
+        matTooltip="Add new template"
+      >
+        <mat-icon aria-label="add">add_circle</mat-icon>
       </button>
-  </mat-toolbar>
-
-  <mat-list>
+    </h2>
     <mat-list-item *ngIf="templates.length == 0">
-        <mat-hint>No templates defined</mat-hint>
+      <mat-hint>No templates defined</mat-hint>
     </mat-list-item>
-    <mat-list-item *ngFor="let template of templates;let index=index; trackBy: trackByIndex">
-      <div class="data-export-template-name">{{ template.name }}</div>
-      <mat-action-row>
-        <button mat-button color="primary" (click)="edit(index)">
-          <mat-icon aria-label="edit">edit</mat-icon>
-          Edit
-        </button>
-        <button mat-button color="accent" (click)="execute(template)">
-          <mat-icon aria-label="send">send</mat-icon>
-          Execute
-        </button>
+    <mat-list-item
+      *ngFor="
+        let template of templates;
+        let index = index;
+        trackBy: trackByIndex
+      "
+    >
+      <mat-icon mat-list-icon aria-label="Data Export Template"
+        >archive</mat-icon
+      >
+      <a
+        mat-button
+        class="data-export-template-name"
+        (click)="edit(index)"
+        matTooltip="Edit the template"
+      >
+        {{ template.name }}
+      </a>
+      <span class="data-export-spacer"></span>
+      <button
+        mat-icon-button
+        (click)="execute(template)"
+        color="primary"
+        matTooltip="Execute the template"
+      >
+        <mat-icon aria-label="send">send</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="dataExportService.delete(index)"
+        matTooltip="Delete the template"
+      >
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </mat-list-item>
+    <mat-divider></mat-divider>
 
-        <button mat-button color="warn" (click)="dataExportService.delete(index)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-          Delete
-        </button>
-      </mat-action-row>
+    <!-- Samba Shares Part -->
+    <h2 mat-subheader>
+      Samba Shares <span class="data-export-spacer"></span>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="newShare()"
+        matTooltip="Add new Samba share"
+      >
+        <mat-icon aria-label="add">add_circle</mat-icon>
+      </button>
+    </h2>
+    <mat-list-item *ngIf="templates.length == 0">
+      <mat-hint>No templates defined</mat-hint>
+    </mat-list-item>
+    <mat-list-item
+      *ngFor="
+        let template of templates;
+        let index = index;
+        trackBy: trackByIndex
+      "
+    >
+      <mat-icon mat-list-icon aria-label="Data Export Template"
+        >archive</mat-icon
+      >
+      <a
+        mat-button
+        class="data-export-template-name"
+        (click)="edit(index)"
+        matTooltip="Edit the template"
+      >
+        {{ template.name }}
+      </a>
+      <span class="data-export-spacer"></span>
+      <button
+        mat-icon-button
+        (click)="execute(template)"
+        color="primary"
+        matTooltip="Execute the template"
+      >
+        <mat-icon aria-label="send">send</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="dataExportService.delete(index)"
+        matTooltip="Delete the template"
+      >
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
     </mat-list-item>
   </mat-list>
 </div>

@@ -60,4 +60,7 @@ export class DataExportComponent implements OnInit {
 
   execute(template: DataExportTemplate) {
   }
+
+  newShare(): void {
+  }
 }

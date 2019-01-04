@@ -23,11 +23,8 @@ export class FileFlatNode {
  * The file structure tree data in string. The data could be parsed into a Json object
  */
 const TREE_DATA = JSON.stringify({
-  'Data Export': {
-    Status: 'app',
-    Templates: 'app',
-    'Samba Shares': 'app'
-  }
+  'Data Export': 'data-export',
+  'User Management': 'users',
 });
 
 /**
