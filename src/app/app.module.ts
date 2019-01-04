@@ -25,11 +25,10 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { routing } from './app.routing';
-import {DataService} from './services/data.service';
+import {DataExportShareService} from './services/data-export-share.service';
+import {AuthenticationService} from './services/authentication.service';
 import {LoginComponent} from './pages/login/login.component';
 import {DataExportComponent} from './pages/data-export/data-export.component';
-import {DataExportTemplateComponent} from './pages/data-export/template/data-export-template.component';
-import {DataExportPathComponent} from './pages/data-export/path/data-export-path.component';
 import {DataExportEditComponent} from './pages/data-export/edit/data-export-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavigationComponent} from './pages/navigation/navigation.component';
@@ -38,15 +37,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 // used to create fake backend
 import { fakeBackendProvider } from './helpers';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
-import {AuthenticationService} from './services/authentication.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DataExportComponent,
-    DataExportTemplateComponent,
-    DataExportPathComponent,
     DataExportEditComponent,
     NavigationComponent
   ],
@@ -79,8 +75,6 @@ import {AuthenticationService} from './services/authentication.service';
   entryComponents: [
     LoginComponent,
     DataExportComponent,
-    DataExportTemplateComponent,
-    DataExportPathComponent,
     DataExportEditComponent,
     NavigationComponent
   ],
@@ -90,7 +84,7 @@ import {AuthenticationService} from './services/authentication.service';
 
     // provider used to create fake backend
     fakeBackendProvider,
-    DataService,
+    DataExportShareService,
     AuthenticationService,
   ],
   bootstrap: [AppComponent]

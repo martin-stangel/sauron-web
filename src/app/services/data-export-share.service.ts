@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
 import { DataExportTemplate, DataExportPath } from '../models/data-export-template';
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class DataExportService {
+export class DataExportShareService {
   templates: DataExportTemplate[] = [
       {
         name: 'Template1',
