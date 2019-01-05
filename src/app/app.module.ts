@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
   MatButtonModule,
   MatDialogModule,
@@ -25,26 +23,23 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { routing } from './app.routing';
-import {DataExportShareService} from './services/data-export-share.service';
-import {AuthenticationService} from './services/authentication.service';
-import {LoginComponent} from './pages/login/login.component';
-import {DataExportComponent} from './pages/data-export/data-export.component';
-import {DataExportEditComponent} from './pages/data-export/edit/data-export-edit.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NavigationComponent} from './pages/navigation/navigation.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import * as DataExport from './data-export';
+import * as Main from './main';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // used to create fake backend
-import { fakeBackendProvider } from './helpers';
-import { JwtInterceptor, ErrorInterceptor } from './helpers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    DataExportComponent,
-    DataExportEditComponent,
-    NavigationComponent
+    Main.LoginComponent,
+    Main.NavigationComponent,
+    DataExport.PageComponent,
+    DataExport.EditShareComponent,
+    DataExport.EditTemplateComponent,
   ],
   imports: [
     routing,
@@ -73,19 +68,21 @@ import { JwtInterceptor, ErrorInterceptor } from './helpers';
     ReactiveFormsModule
   ],
   entryComponents: [
-    LoginComponent,
-    DataExportComponent,
-    DataExportEditComponent,
-    NavigationComponent
+    Main.NavigationComponent,
+    Main.LoginComponent,
+    DataExport.PageComponent,
+    DataExport.EditTemplateComponent,
+    DataExport.EditShareComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: Main.JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: Main.ErrorInterceptor, multi: true },
+    // use fake backend in place of Http service for backend-less development
+    { provide: HTTP_INTERCEPTORS, useClass: Main.FakeBackendInterceptor, multi: true },
 
-    // provider used to create fake backend
-    fakeBackendProvider,
-    DataExportShareService,
-    AuthenticationService,
+    Main.AuthenticationService,
+    DataExport.ShareService,
+    DataExport.TemplateService,
   ],
   bootstrap: [AppComponent]
 })

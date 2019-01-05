@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../environments/environment';
-import { DataExportTemplate, DataExportPath } from '../models/data-export-template';
-import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
+import { Template, Path } from './data-export.model';
 
 @Injectable({ providedIn: 'root' })
-export class DataExportShareService {
-  templates: DataExportTemplate[] = [
+export class TemplateService {
+  templates: Template[] = [
       {
         name: 'Template1',
         paths: [
@@ -55,24 +53,24 @@ export class DataExportShareService {
 
     constructor(private http: HttpClient) { }
 
-    getAll(): Promise<DataExportTemplate[]> {
+    getAll(): Promise<Template[]> {
       // TODO: send HTTP get here instead
-      return new Promise<DataExportTemplate[]>(() => this.templates);
+      return new Promise<Template[]>(() => this.templates);
     }
 
-    post(template: DataExportTemplate): Promise<DataExportTemplate[]> {
+    post(template: Template): Promise<Template[]> {
       // TODO: send HTTP post here instead
       this.templates.unshift(template);
       return this.getAll();
     }
 
-    put(templateIndex: number, template: DataExportTemplate): Promise<DataExportTemplate[]> {
+    put(templateIndex: number, template: Template): Promise<Template[]> {
       // TODO: send HTTP put here instead
       this.templates[templateIndex] = template;
       return this.getAll();
     }
 
-    delete(templateIndex: number): Promise<DataExportTemplate[]> {
+    delete(templateIndex: number): Promise<Template[]> {
       this.templates.splice(templateIndex, 1);
       // TODO: send HTTP delete here instead
       return this.getAll();

@@ -1,0 +1,12 @@
+.app-edit-root {
+  overflow: auto;
+}
+
+.mat-form-field {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.app-path-card {
+  margin-bottom: 5px;
+}

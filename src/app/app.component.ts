@@ -1,8 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from './services';
-import { User } from './models/user';
+import * as Main from './main';
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -11,13 +10,13 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  currentUser: User;
+  currentUser: Main.User;
   @ViewChild('drawer')
   drawer: MatSidenav;
 
   constructor(
       private router: Router,
-      private authenticationService: AuthenticationService
+      private authenticationService: Main.AuthenticationService
   ) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }

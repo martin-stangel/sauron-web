@@ -1,12 +1,12 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
-import { DataExportComponent } from './pages/data-export/data-export.component';
-import { LoginComponent } from './pages/login/login.component';
-import { AuthGuard } from './guards/auth.guard';
+import * as DataExport from './data-export';
+import * as Main from './main';
 
 const appRoutes: Routes = [
-    { path: '', component: DataExportComponent, canActivate: [AuthGuard] },
-    { path: 'login', component: LoginComponent },
+    { path: '', component: DataExport.PageComponent, canActivate: [Main.AuthGuard] },
+    { path: 'data-export', component: DataExport.PageComponent, canActivate: [Main.AuthGuard] },
+    { path: 'login', component: Main.LoginComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }

@@ -1,0 +1,73 @@
+<h2 mat-dialog-title class="mat-h2">Template properties</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field class="app-form-element">
+    <input matInput placeholder="Name" [(ngModel)]="template.name" />
+  </mat-form-field>
+
+  <mat-form-field class="app-form-element">
+      <mat-select placeholder="After Export" [(ngModel)]="template.deleteSource">
+        <mat-option [value]="true">
+          Delete Source
+        </mat-option>
+        <mat-option [value]="false">
+          Don't Delete Source
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <h2 class="mat-h2">Paths</h2>
+  <mat-toolbar align="end">
+      <button mat-button color="primary" (click)="newPath()" style="margin-left: auto">
+          <mat-icon aria-label="add">add</mat-icon>
+          Add new path
+      </button>
+  </mat-toolbar>
+  <mat-card class="app-path-card" *ngFor="let path of paths;let index = index;trackBy:trackByIndex;">
+    <mat-card-content>
+        <mat-form-field class="app-form-element">
+            <input matInput placeholder="Source path" [(ngModel)]="paths[index].sourcePath" />
+        </mat-form-field>
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let wildcard of paths[index].wildcards" [selectable]="selectable"
+                      [removable]="removable" (removed)="removeWildcard(index, wildcard)">
+              {{wildcard}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Wild cards"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="addWildcard(index, $event)">
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-form-field class="app-form-element">
+          <mat-select placeholder='File lookup' [(ngModel)]="paths[index].recursive">
+            <mat-option [value]="true">
+              Recursive
+            </mat-option>
+            <mat-option [value]="false">
+              Not Recursive
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button color="warn" (click)="deletePath(path)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+            Delete
+        </button>
+    </mat-card-actions>
+  </mat-card>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button
+    mat-button
+    [mat-dialog-close]="1"
+    color="primary"
+  >
+    <mat-icon aria-label="save">save_alt</mat-icon>
+    Save
+  </button>
+  <button mat-button tabindex="-1" [mat-dialog-close]="0" color="warn">Cancel</button>
+</mat-dialog-actions>
