@@ -5,6 +5,7 @@
 .data-export-template-name {
   flex: 1;
   flex-grow: 1;
+  text-align: left;
 }
 
 .data-export-flex-grow {
