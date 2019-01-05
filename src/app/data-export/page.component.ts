@@ -6,6 +6,7 @@ import { Template, Share } from './data-export.model';
 import { TemplateService } from './template.service';
 import { ShareService } from './share.service';
 import { EditTemplateComponent } from './edit-template.component';
+import { EditShareComponent } from './edit-share.component';
 
 @Component({
   selector: 'app-data-export-page',
@@ -17,10 +18,10 @@ export class PageComponent implements OnInit {
   shares: Share[];
 
   constructor(
-    public service: TemplateService,
+    public templateService: TemplateService,
     public shareService: ShareService,
     public dialog: MatDialog) {
-    this.templates = service.templates;
+    this.templates = templateService.templates;
     this.shares = shareService.shares;
   }
 
@@ -31,7 +32,7 @@ export class PageComponent implements OnInit {
     return index;
   }
 
-  openEditDialog(template: Template) {
+  openTemplateEditDialog(template: Template) {
     const dialogRef = this.dialog.open(EditTemplateComponent,
       {
         data: template,
@@ -44,27 +45,56 @@ export class PageComponent implements OnInit {
     );
   }
 
+  openShareEditDialog(share: Share) {
+    const dialogRef = this.dialog.open(EditShareComponent,
+      {
+        data: share,
+        height: 'auto'
+      });
+
+    return dialogRef.afterClosed().pipe(
+      filter(result => result === 1),
+      map(result => share)
+    );
+  }
+
   newTemplate(): void {
     const newTemplate: Template = {
       name: '',
       deleteSource: false,
       paths: []
     };
-    this.openEditDialog(newTemplate).subscribe(result => {
-      this.service.post(result);
+    this.openTemplateEditDialog(newTemplate).subscribe(result => {
+      this.templateService.post(result);
     });
   }
 
-  edit(templateIndex: number) {
+  editTemplate(templateIndex: number) {
     const editedTemplate = JSON.parse(JSON.stringify(this.templates[templateIndex]));
-    this.openEditDialog(editedTemplate).subscribe(result => {
-      this.service.put(templateIndex, result);
+    this.openTemplateEditDialog(editedTemplate).subscribe(result => {
+      this.templateService.put(templateIndex, result);
     });
   }
 
-  execute(template: Template) {
+  executeTemplate(template: Template) {
   }
 
   newShare(): void {
+    const newShare: Share = {
+      path: '//',
+      username: '',
+      password: '',
+      workgroup: 'WORKGROUP'
+    };
+    this.openShareEditDialog(newShare).subscribe(result => {
+      this.shareService.post(result);
+    });
+  }
+
+  editShare(shareIndex: number) {
+    const editedShare = JSON.parse(JSON.stringify(this.shares[shareIndex]));
+    this.openShareEditDialog(editedShare).subscribe(result => {
+      this.shareService.put(shareIndex, result);
+    });
   }
 }

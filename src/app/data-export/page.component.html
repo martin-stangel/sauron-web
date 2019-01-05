@@ -27,14 +27,14 @@
         trackBy: trackByIndex
       ">
 
-      <button mat-button (click)="edit(index)" class="data-export-template-name" matTooltip="Edit the template">
+      <button mat-button (click)="editTemplate(index)" class="data-export-template-name" matTooltip="Edit the template">
           <mat-icon mat-list-icon aria-label="Data Export Template">archive</mat-icon>
           {{ template.name }}
       </button>
-      <button mat-icon-button (click)="execute(template)" color="primary" matTooltip="Execute the template">
+      <button mat-icon-button (click)="executeTemplate(template)" color="primary" matTooltip="Execute the template">
         <mat-icon aria-label="send">send</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="dataExportService.delete(index)" matTooltip="Delete the template">
+      <button mat-icon-button color="warn" (click)="templateService.delete(index)" matTooltip="Delete the template">
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </mat-list-item>
@@ -55,11 +55,11 @@
         let index = index;
         trackBy: trackByIndex
       ">
-      <button mat-button class="data-export-template-name" (click)="edit(index)" matTooltip="Edit the template">
+      <button mat-button class="data-export-template-name" (click)="editShare(index)" matTooltip="Edit the template">
           <mat-icon mat-list-icon aria-label="Data Export Template">folder_special</mat-icon>
           {{ share.path }}
       </button>
-      <button mat-icon-button color="warn" (click)="dataExportShareService.delete(index)" matTooltip="Delete the share">
+      <button mat-icon-button color="warn" (click)="shareService.delete(index)" matTooltip="Delete the share">
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </mat-list-item>

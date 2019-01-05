@@ -8,8 +8,6 @@ import { Share } from './data-export.model';
   styleUrls: ['./edit-share.component.css']
 })
 export class EditShareComponent {
-  visible = true;
-
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public share: Share,
