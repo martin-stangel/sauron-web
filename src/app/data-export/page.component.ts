@@ -36,7 +36,8 @@ export class PageComponent implements OnInit {
     const dialogRef = this.dialog.open(EditTemplateComponent,
       {
         data: template,
-        height: 'auto'
+        height: 'auto',
+        width: '80vw'
       });
 
     return dialogRef.afterClosed().pipe(

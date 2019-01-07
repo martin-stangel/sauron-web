@@ -1,15 +1,12 @@
 <div class="data-export-root">
   <h1 mat-title>Data Export</h1>
 
-  <mat-list role="list" class="data-export-list">
+  <mat-nav-list role="list" class="data-export-list">
     <!-- Status Part -->
     <h2 mat-subheader>
-      Status<span class="data-export-spacer"></span>
+      Status
     </h2>
-    <mat-list-item>
-
-      <p mat>No job running</p>
-    </mat-list-item>
+    <p mat>No job running</p>
     <mat-divider></mat-divider>
     <!-- Templates Part -->
     <h2 mat-subheader>
@@ -27,10 +24,10 @@
         trackBy: trackByIndex
       ">
 
-      <button mat-button (click)="editTemplate(index)" class="data-export-template-name" matTooltip="Edit the template">
-          <mat-icon mat-list-icon aria-label="Data Export Template">archive</mat-icon>
+      <mat-icon mat-list-icon aria-label="Data Export Template">archive</mat-icon>
+      <a (click)="editTemplate(index)" matTooltip="Edit the template">
           {{ template.name }}
-      </button>
+      </a>
       <button mat-icon-button (click)="executeTemplate(template)" color="primary" matTooltip="Execute the template">
         <mat-icon aria-label="send">send</mat-icon>
       </button>
@@ -63,5 +60,5 @@
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </mat-list-item>
-  </mat-list>
+  </mat-nav-list>
 </div>
