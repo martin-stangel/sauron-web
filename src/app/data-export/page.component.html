@@ -3,35 +3,51 @@
 
   <mat-nav-list role="list" class="data-export-list">
     <!-- Status Part -->
-    <h2 mat-subheader>
-      Status
-    </h2>
+    <h2 mat-subheader>Status</h2>
     <p mat>No job running</p>
     <mat-divider></mat-divider>
     <!-- Templates Part -->
     <h2 mat-subheader>
       Templates <span class="data-export-spacer"></span>
-      <button mat-icon-button color="primary" (click)="newTemplate()" matTooltip="Add new template">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="newTemplate()"
+        matTooltip="Add new template"
+      >
         <mat-icon aria-label="add">add</mat-icon>
       </button>
     </h2>
     <mat-list-item *ngIf="templates.length == 0">
       <mat-hint>No templates defined</mat-hint>
     </mat-list-item>
-    <mat-list-item *ngFor="
+    <mat-list-item
+      *ngFor="
         let template of templates;
         let index = index;
         trackBy: trackByIndex
-      ">
-
-      <mat-icon mat-list-icon aria-label="Data Export Template">archive</mat-icon>
-      <a (click)="editTemplate(index)" matTooltip="Edit the template">
-          {{ template.name }}
-      </a>
-      <button mat-icon-button (click)="executeTemplate(template)" color="primary" matTooltip="Execute the template">
+      "
+      (click)="editTemplate(index)"
+      matTooltip="Edit the template"
+    >
+      <mat-icon mat-list-icon aria-label="Data Export Template"
+        >archive</mat-icon
+      >
+      <span class="data-export-spacer">{{ template.name }}</span>
+      <button
+        mat-icon-button
+        (click)="executeTemplate(template)"
+        color="primary"
+        matTooltip="Execute the template"
+      >
         <mat-icon aria-label="send">send</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="templateService.delete(index)" matTooltip="Delete the template">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="templateService.delete(index); $event.stopPropagation()"
+        matTooltip="Delete the template"
+      >
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </mat-list-item>
@@ -40,23 +56,32 @@
     <!-- Samba Shares Part -->
     <h2 mat-subheader>
       <span class="data-export-spacer">Samba Shares</span>
-      <button mat-icon-button color="primary" (click)="newShare()" matTooltip="Add new Samba share">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="newShare()"
+        matTooltip="Add new Samba share"
+      >
         <mat-icon aria-label="add">add</mat-icon>
       </button>
     </h2>
     <mat-list-item *ngIf="shares.length == 0">
       <mat-hint>No shares defined</mat-hint>
     </mat-list-item>
-    <mat-list-item *ngFor="
-        let share of shares;
-        let index = index;
-        trackBy: trackByIndex
-      ">
-      <button mat-button class="data-export-template-name" (click)="editShare(index)" matTooltip="Edit the template">
-          <mat-icon mat-list-icon aria-label="Data Export Template">folder_special</mat-icon>
-          {{ share.path }}
-      </button>
-      <button mat-icon-button color="warn" (click)="shareService.delete(index)" matTooltip="Delete the share">
+    <mat-list-item
+      *ngFor="let share of shares; let index = index; trackBy: trackByIndex"
+      (click)="editShare(index)"
+      matTooltip="Edit the template"
+    >
+      <mat-icon mat-list-icon aria-label="Data Export Template">folder_special</mat-icon>
+
+      <span class="data-export-spacer">{{ share.path }}</span>
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="shareService.delete(index); $event.stopPropagation()"
+        matTooltip="Delete the share"
+      >
         <mat-icon aria-label="Delete">delete</mat-icon>
       </button>
     </mat-list-item>
