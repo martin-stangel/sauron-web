@@ -37,7 +37,7 @@ export class PageComponent implements OnInit {
       {
         data: template,
         height: 'auto',
-        width: '80vw'
+        width: '800px'
       });
 
     return dialogRef.afterClosed().pipe(
