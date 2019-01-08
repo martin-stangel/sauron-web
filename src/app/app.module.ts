@@ -26,6 +26,7 @@ import {
 import { routing } from './app.routing';
 
 import * as DataExport from './data-export';
+import * as User from './user';
 import * as Main from './main';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataExport.PageComponent,
     DataExport.EditShareComponent,
     DataExport.EditTemplateComponent,
+    User.PageComponent,
   ],
   imports: [
     routing,
@@ -75,6 +77,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataExport.PageComponent,
     DataExport.EditTemplateComponent,
     DataExport.EditShareComponent,
+    User.PageComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Main.JwtInterceptor, multi: true },

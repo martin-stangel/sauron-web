@@ -24,7 +24,7 @@ export class FileFlatNode {
  */
 const TREE_DATA = JSON.stringify({
   'Data Export': 'data-export',
-  'User Management': 'users',
+  'User Management': 'user',
 });
 
 /**

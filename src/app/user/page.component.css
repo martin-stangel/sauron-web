@@ -1,0 +1,22 @@
+.data-export-root {
+  max-width: 40em;
+}
+
+.data-export-template-name {
+  flex: 1;
+  flex-grow: 1;
+  width: 100%;
+  text-align: left;
+}
+
+.data-export-flex-grow {
+  flex-grow: 1;
+}
+
+.data-export-spacer {
+  width: 100%;
+}
+
+.data-export-list {
+  margin-top: 10px;
+}

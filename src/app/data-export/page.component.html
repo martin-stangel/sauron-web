@@ -28,7 +28,6 @@
         trackBy: trackByIndex
       "
       (click)="editTemplate(index)"
-      matTooltip="Edit the template"
     >
       <mat-icon mat-list-icon aria-label="Data Export Template"
         >archive</mat-icon
@@ -71,9 +70,10 @@
     <mat-list-item
       *ngFor="let share of shares; let index = index; trackBy: trackByIndex"
       (click)="editShare(index)"
-      matTooltip="Edit the template"
     >
-      <mat-icon mat-list-icon aria-label="Data Export Template">folder_special</mat-icon>
+      <mat-icon mat-list-icon aria-label="Data Export Template"
+        >folder_special</mat-icon
+      >
 
       <span class="data-export-spacer">{{ share.path }}</span>
       <button
